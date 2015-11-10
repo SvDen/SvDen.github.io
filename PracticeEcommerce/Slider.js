@@ -83,14 +83,19 @@ window.onload = function () {
     /*** MENU ON PHONES ***/
 
     document.querySelector('#pull').addEventListener('click', actionMenu);
-    var menuHight = document.querySelectorAll('.menu_item').length * 35 + 20 + 'px';
+    //var menuHight = document.querySelectorAll('.menu_item').length * 35 + 20 + 'px';
 
     var menu = document.querySelector('#nav_menu');
 
     function actionMenu () {
-        this.height = getComputedStyle(menu).height;
-        if (document.documentElement.clientWidth <= '450' && this.height == '35px') menu.style.height = menuHight;
-        if (this.height == menuHight) menu.style.height = 35 +'px';
-    }
+            if (document.documentElement.clientWidth <= '450' && menu.className !== 'active') menu.classList.add('active');
+            else if (menu.className == 'active') menu.classList.remove('active');
+        }
+
+    //function actionMenu () {
+    //    this.height = getComputedStyle(menu).height;
+    //    if (document.documentElement.clientWidth <= '450' && this.height == '35px') menu.style.height = menuHight;
+    //    if (this.height == menuHight) menu.style.height = 35 +'px';
+    //}
 
 }

@@ -627,12 +627,69 @@ footer a:hover {
     }
 
     #pull {
-        display: block;
+        display: flex;
         border-bottom: 3px solid #ffffff;
         padding-left: 0px;
-        background: linear-gradient(0deg, #fff 0px, #fff 5px, #4ccfc1 5px, #4ccfc1 10px, #fff 10px, #fff 15px, #4ccfc1 15px, #4ccfc1 20px, #fff 20px, #fff 25px, #4ccfc1 25px) no-repeat;
-        background-size: 25px 70%;
-        background-position: 50px center;
+        align-items: center;
+
+        /***OBSOLETE VERSION WITH GRADIENT ICON***/
+        /*background: linear-gradient(0deg, #fff 0px, #fff 5px, #4ccfc1 5px, #4ccfc1 10px, #fff 10px, #fff 15px, #4ccfc1 15px, #4ccfc1 20px, #fff 20px, #fff 25px, #4ccfc1 25px) no-repeat;*/
+        /*background-size: 25px 70%;*/
+        /*background-position: 50px center;*/
+    }
+
+    .menu-icon {
+        height: 25px;
+        width: 40px;
+        display: flex;
+        margin-right: 15px;
+        align-items: center;
+        position: relative;
+    }
+
+    .menu-icon span {
+        display: block;
+        height: 5px;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 2px;
+        transition: all 0.3s linear;
+    }
+
+    .menu-icon span::after,
+    .menu-icon span::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        display: block;
+        height: 5px;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 2px;
+        transition: all 0.3s linear;
+    }
+
+    .menu-icon span::after {
+        top: 0;
+    }
+
+    .menu-icon span::before {
+        bottom: 0;
+    }
+
+    .active .menu-icon span::after,
+    .active .menu-icon span::before {
+        transform-origin: left;
+        width: 130%;
+        overflow: hidden;
+    }
+
+    .active .menu-icon span::after { transform: rotateZ(30deg); }
+    .active .menu-icon span::before { transform: rotateZ(-30deg); }
+    .active .menu-icon span { width: 0;}
+
+    nav ul.active {
+        height: 400px;
     }
 
     /***SHOP***/
