@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test XMLHttpRequest Page</title>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        'use strict';
+
+        window.onload = function() {
+
+            var nickname = prompt('Введите ваше имя или никнейм');
+
+            var socket = new WebSocket('wss://demo-project-svden.c9users.io');
+            setTimeout(() => socket.send(nickname + ' вошел в чат.'), 300);
+
+            document.forms.publish.onsubmit = function() {
+                var outMes = this.message.value;
+                socket.send(nickname + ': ' + outMes);
+                this.message.value = '';
+                return false;
+            }
+
+            socket.onmessage = (e) => {
+                if (e.data.charAt(0) === '$') {
+                    document.getElementById('online').innerHTML = e.data.slice(1);
+                } else {
+                    showMessage(e.data);
+                }
+            }
+
+            window.onunload = () => socket.send(nickname + ' покинул чат.');
+
+            function showMessage(mes) {
+                var messageElem = document.createElement('div');
+                messageElem.appendChild(document.createTextNode(mes));
+                document.getElementById('chatWindow').insertBefore(messageElem, document.getElementById('chatWindow').firstElementChild);
+            }
+        }
+    </script>
+    <style>
+        .message-window {
+            background-color: aliceblue;
+            height: 270px;
+            width: 300px;
+            overflow: auto;
+            padding-bottom: 30px;
+            position: relative;
+        }
+
+        .message-window .online-now {
+            position: absolute;
+            top: 280px;
+            color: gray;
+        }
+
+        .message-window .online-now span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<!-- форма для отправки сообщений -->
+<form name="publish">
+    <input type="text" name="message" placeholder="Введите сообщение...">
+    <input type="submit" value="Отправить">
+</form>
+
+<!-- здесь будут появляться входящие сообщения -->
+<div class="message-window" id="chatWindow">
+    <div class="online-now">Сейчас онлайн: <span id="online"></span></div>
+</div>
+
+</body>
+</html>
