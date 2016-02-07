@@ -1,0 +1,44 @@
+.chat {
+    width: 400px;
+    border: 1px solid cornflowerblue;
+    padding: 10px;
+    background-color: aliceblue;
+}
+
+.chat-message-window {
+    height: 20em;
+    width: 100%;
+    overflow: auto;
+    padding-bottom: 30px;
+    position: relative;
+    margin-top: 10px;
+}
+
+.chat-message-window p {
+    margin: 0;
+}
+
+.chat-online-now {
+    color: gray;
+    height: 1em;
+    margin-top: 0.5em;
+    padding: 0.5em 0 0;
+    border-top: 1px dashed cornflowerblue;
+}
+
+.chat-message-window .chat-online-now span {
+    font-weight: bold;
+}
+
+.chat-submit,
+.chat-set-name {
+    float: right;
+}
+
+.chat-submit {
+    display: none;
+}
+
+.chat-input {
+    width: 250px;
+}

@@ -2,73 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Test XMLHttpRequest Page</title>
+    <title>Super-chat</title>
+    <link rel="stylesheet" href="chat.css"/>
+    <link rel="stylesheet" href="modal.css"/>
+    <script src="modal.js"></script>
     <script>
         'use strict';
 
         window.onload = function() {
 
-            var nickname = prompt('Введите ваше имя или никнейм');
+            function ChatUser (chatID, webSocketURL) {
+                const form = document.getElementById(chatID).getElementsByTagName('form')[0];
+                const textFieldButton = form.querySelector(".chat-input");
+                const setNameButton = form.querySelector(".chat-set-name");
+                const submitButton = form.querySelector(".chat-submit");
+                let nickname = '';
 
-            var socket = new WebSocket('wss://demo-project-svden.c9users.io');
-            setTimeout(() => socket.send(nickname + ' вошел в чат.'), 300);
+                // подключение к серверу
+                let socket;
+                let promise = new Promise(function(resolve, reject) {
+                    socket = new WebSocket(webSocketURL);
+                    // добавляем обработчик события, как только получено первое (кол-во пользователей),
+                    // промиз успешно завершается и далее его статус уже не может измениться
+                    socket.onmessage = (e) => {
+                        resolve('connected');
 
-            document.forms.publish.onsubmit = function() {
-                var outMes = this.message.value;
-                socket.send(nickname + ': ' + outMes);
-                this.message.value = '';
-                return false;
-            }
+                        if (e.data.charAt(0) === '$') {
+                            // $ используется в качестве маски для сообщений о кол-ве пользователей
+                            document.getElementById('online').textContent = e.data.slice(1);
+                        } else {
+                            showMessage(e.data);
+                        }
+                    }
 
-            socket.onmessage = (e) => {
-                if (e.data.charAt(0) === '$') {
-                    document.getElementById('online').innerHTML = e.data.slice(1);
-                } else {
-                    showMessage(e.data);
-                }
-            }
+                    // ждём ответ 5 сек, если его нет - отклоняем промиз
+                    setTimeout(() => reject('timeout'),5000);
+                }).then((connected) => {
+                    // сообщение при выходе, это нужно как-то переписать с серверной стороны
+//                    window.onunload = () => socket.send(nickname + ' покинул чат.');
 
-            window.onunload = () => socket.send(nickname + ' покинул чат.');
+                // обработчик клика по кнопке "Отправить"
+                form.onsubmit = function() {
+                    let outMes = this.message.value;
+                    socket.send(outMes);
+                    this.message.value = '';
+                    return false;
+                };
 
+                // подключаем кнопку "Войти" и выводим сообщение об успешном подключении
+                setNameButton.removeAttribute('disabled');
+                showMessage('Подключение успешно')
+            }, (timeout) => {
+                // здесь выводим сообщение об ошибке, пока без дифференциации
+                showMessage('Подключиться не удалось. Превышен интервал запроса к серверу.')
+            });
+
+// функция вывода сообщений
             function showMessage(mes) {
-                var messageElem = document.createElement('div');
+                let messageElem = document.createElement('p');
                 messageElem.appendChild(document.createTextNode(mes));
                 document.getElementById('chatWindow').insertBefore(messageElem, document.getElementById('chatWindow').firstElementChild);
             }
+
+// функция фокуса на поле ввода
+            function focus() {
+                document.forms.publish.message.focus();
+            }
+            focus();
+
+
+            // модальное окно с функцией первоначального установки имени
+            showPrompt("Введите своё имя или никнейм", function(value) {
+//                alert( 'Кнопка А. Вы ввели: ' + value);
+                nickname = value;
+                setNameButton.style.display = 'none';
+                submitButton.style.display = 'block';
+                textFieldButton.removeAttribute('disabled');
+                socket.send('/setName ' + nickname);
+                focus();
+            }, 'chat-name-input');
+        };
+
+            let chatUser = new ChatUser('chat', 'ws://127.0.0.1:8080');
+//            let chatUser2 = new ChatUser('chat', 'wss://demo-project-svden.c9users.io');
         }
     </script>
     <style>
-        .message-window {
-            background-color: aliceblue;
-            height: 270px;
-            width: 300px;
-            overflow: auto;
-            padding-bottom: 30px;
-            position: relative;
-        }
-
-        .message-window .online-now {
-            position: absolute;
-            top: 280px;
-            color: gray;
-        }
-
-        .message-window .online-now span {
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
 <!-- форма для отправки сообщений -->
-<form name="publish">
-    <input type="text" name="message" placeholder="Введите сообщение...">
-    <input type="submit" value="Отправить">
-</form>
+<section class="chat" id="chat">
+    <form name="publish">
+        <input disabled="true" class="chat-input" type="text" name="message" placeholder="Введите сообщение..." tabindex="1" autocomplete="off">
+        <input id="chat-name-input" class="chat-set-name" type="button" value="Войти" disabled>
+        <input class="chat-submit" type="submit" value="Отправить">
+    </form>
 
-<!-- здесь будут появляться входящие сообщения -->
-<div class="message-window" id="chatWindow">
-    <div class="online-now">Сейчас онлайн: <span id="online"></span></div>
+    <!-- здесь будут появляться входящие сообщения -->
+    <div class="chat-message-window" id="chatWindow">
+    </div>
+    <div class="chat-online-now">Сейчас онлайн: <span id="online"></span></div>
+</section>
+
+<!--Всплывающее модальное окно ввода имени-->
+<div id="prompt-form-container">
+    <form id="prompt-form">
+        <div id="prompt-message">Введите, пожалуйста...
+            <br>Что-то..</div>
+        <input name="text" type="text" tabindex="1">
+        <input type="submit" value="Ок" tabindex="2">
+        <input type="button" name="cancel" value="Отмена" tabindex="3">
+    </form>
 </div>
-
 </body>
 </html>
