@@ -20,7 +20,7 @@
 
                 // подключение к серверу
                 let socket;
-                let promise = new Promise(function(resolve, reject) {
+                new Promise(function(resolve, reject) {
                     socket = new WebSocket(webSocketURL);
                     // добавляем обработчик события, как только получено первое (кол-во пользователей),
                     // промиз успешно завершается и далее его статус уже не может измениться
@@ -34,13 +34,9 @@
                             showMessage(e.data);
                         }
                     }
-
                     // ждём ответ 5 сек, если его нет - отклоняем промиз
                     setTimeout(() => reject('timeout'),5000);
                 }).then((connected) => {
-                    // сообщение при выходе, это нужно как-то переписать с серверной стороны
-//                    window.onunload = () => socket.send(nickname + ' покинул чат.');
-
                 // обработчик клика по кнопке "Отправить"
                 form.onsubmit = function() {
                     let outMes = this.message.value;
@@ -53,27 +49,25 @@
                 setNameButton.removeAttribute('disabled');
                 showMessage('Подключение успешно')
             }, (timeout) => {
-                // здесь выводим сообщение об ошибке, пока без дифференциации
+                // здесь выводим сообщение об ошибке, пока без new Error
                 showMessage('Подключиться не удалось. Превышен интервал запроса к серверу.')
             });
 
-// функция вывода сообщений
+            // функция вывода сообщений
             function showMessage(mes) {
                 let messageElem = document.createElement('p');
                 messageElem.appendChild(document.createTextNode(mes));
                 document.getElementById('chatWindow').insertBefore(messageElem, document.getElementById('chatWindow').firstElementChild);
             }
 
-// функция фокуса на поле ввода
+            // функция фокуса на поле ввода
             function focus() {
                 document.forms.publish.message.focus();
             }
             focus();
 
-
             // модальное окно с функцией первоначального установки имени
             showPrompt("Введите своё имя или никнейм", function(value) {
-//                alert( 'Кнопка А. Вы ввели: ' + value);
                 nickname = value;
                 setNameButton.style.display = 'none';
                 submitButton.style.display = 'block';
@@ -83,8 +77,8 @@
             }, 'chat-name-input');
         };
 
-            let chatUser = new ChatUser('chat', 'ws://127.0.0.1:8080');
-//            let chatUser2 = new ChatUser('chat', 'wss://demo-project-svden.c9users.io');
+//            let chatUser = new ChatUser('chat', 'ws://127.0.0.1:8080');
+            let chatUser2 = new ChatUser('chat', 'wss://demo-project-svden.c9users.io');
         }
     </script>
     <style>
