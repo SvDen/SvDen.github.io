@@ -17,27 +17,27 @@ gulp.task('script', function() {
         }))
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('prod/script'))
+        .pipe(gulp.dest('public/script'))
 });
 
 gulp.task('styles', function() {
     return gulp.src(['node_modules/bootstrap/dist/css/bootstrap.css', 'dev/style/*.*'])
         .pipe(concat('styles.css'))
-    .pipe(gulp.dest('prod/css'))
+    .pipe(gulp.dest('public/css'))
 });
 
 gulp.task('assets', function() {
     return gulp.src('dev/img/**')
-    .pipe(gulp.dest('prod/img'))
+    .pipe(gulp.dest('public/img'))
 });
 
 gulp.task('html', function() {
     return gulp.src('dev/*.html')
-        .pipe(gulp.dest('prod'))
+        .pipe(gulp.dest('public'))
 });
 
 gulp.task('clear', function() {
-    return del('prod');
+    return del('public');
 });
 
 gulp.task('watch', function() {
@@ -49,7 +49,7 @@ gulp.task('watch', function() {
 
 gulp.task('serve', function() {
     bs.init({
-        server: 'prod'
+        server: 'public'
     });
 
     bs.watch('dev/**/*.*').on('change', bs.reload);
