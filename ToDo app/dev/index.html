@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do application</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>To-Do application<div class="small">based on localstorage</div></h1>
+    <br>
+    <div id="todo-list">
+        <div class="row todo-filter">
+            <div class="col-lg-6 col-md-9 hidden" id="todo-filters">
+                <div class="pull-right">
+                    <span class="label label-info todo-all active">All</span>
+                    <span class="label label-success todo-active">Active</span>
+                    <span class="label label-default todo-completed">Completed</span>
+                    <span class="label label-danger todo-important">Important</span>
+                </div>
+            </div>
+        </div>
+        <div class="row todo-list">
+            <div class="col-lg-6 col-md-9">
+                <ul class="list-group" id="todo-list-group">
+                    <!--<li class="list-group-item todo-item dragging">-->
+                        <!--<label class="complete-container">-->
+                            <!--<input type="checkbox" class="complete">-->
+                            <!--<span class="todo-item-icon"></span>-->
+                        <!--</label>-->
+                        <!--<span class="todo-item-label label label-danger">!</span>-->
+                        <!--<span class="todo-item-text">First task</span>-->
+                        <!--<span class="todo-item-close text-danger pull-right">&#10006;</span>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="row todo-add">
+            <div class="col-lg-4 col-md-6 col-sm-9">
+                <form action="#" id="todo-add-form">
+                    <div class="input-group">
+                        <input type="text" id="todo-input" class="form-control panel-success" placeholder="Write your task here...">
+                    <span class="input-group-btn">
+                        <button id="todo-submit" class="btn btn-success" type="submit">Add</button>
+                    </span>
+                        <span class="input-group-addon panel-danger todo-important-container">
+                            <label class="text-danger">
+                                <input type="checkbox" id="todo-important">
+                                <div>Important!</div>
+                            </label>
+                      </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script/script.js"></script>
+</body>
+</html>

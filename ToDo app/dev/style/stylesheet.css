@@ -1,0 +1,137 @@
+.custom-button {
+    margin-top: -5px;
+}
+
+.list-group-item {
+    padding-left: 35px;
+    position: relative;
+    padding-right: 30px;
+}
+
+.complete {
+    display: none;
+}
+
+.complete-container .todo-item-icon:before {
+    content: url('../img/circle.svg');
+    position: absolute;
+    left: 0;
+    top: 6px;
+    transition: 0.3s all Ease-In-Out;
+}
+
+.list-group-item.completed  .todo-item-icon:before {
+    content: url('../img/task-complete.svg');
+}
+
+.list-group-item.completed .todo-item-label {
+    opacity: 0.5;
+
+}
+
+.list-group-item.completed .todo-item-text {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.todo-item-icon,
+.todo-item-label,
+.todo-item-close {
+    cursor: pointer;
+}
+
+.todo-item-text {
+    padding-left: 10px;
+}
+
+
+.todo-list-edit {
+    position: absolute;
+    top: 0;
+    left: 57px;
+    height: 40px;
+    width: 92%;
+    border: 0;
+    z-index: 999;
+}
+
+.todo-item-close,
+.complete-container {
+    opacity: 0;
+    transition: 0.3s all Ease-in-out;
+}
+
+.list-group-item:hover .todo-item-close,
+.list-group-item:hover .complete-container {
+    opacity: 1;
+}
+
+.todo-item-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 20px;
+}
+
+.todo-filter {
+    margin-bottom: 5px;
+}
+
+.todo-completed,
+.todo-active,
+.todo-all,
+.todo-important {
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+
+.todo-completed.active,
+.todo-active.active,
+.todo-all.active,
+.todo-important.active {
+    opacity: 1;
+}
+
+.todo-important-container {
+    padding: 0;
+}
+
+.todo-important-container label {
+    padding: 0;
+    height: 100%;
+    margin: 0;
+}
+
+.todo-important-container input {
+    display: none;
+}
+
+.todo-important-container div {
+    opacity: 0.3;
+    transition: 0.3s all ease-in-out;
+    padding: 0 12px;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+.todo-important-container input:checked + div {
+    opacity: 1;
+    transition: 0.3s all ease-in-out;
+}
+
+.todo-element-dragging {
+    border-style: dashed;
+    border-color: black;
+    z-index: 900;
+    transform: scale(1.05);
+    transition: 0.1s all ease-in-out;
+}
+
+.todo-dragging * {
+    cursor: move;
+}
+
+.container {
+    padding-bottom: 20px;
+}
