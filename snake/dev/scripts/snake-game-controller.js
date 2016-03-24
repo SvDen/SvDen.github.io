@@ -72,7 +72,7 @@ class SnakeGame {
     init() {
         this.createSnake();
         this.createFood();
-        this.drawCountdown(1);
+        this.drawCountdown(5);
     }
 
     // функция перезапуска уровня
