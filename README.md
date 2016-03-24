@@ -11,7 +11,7 @@ Realized: functional inheritance, working with local storage, building project w
 
 — svden.github.io/Chat/ — chat on WebSocket technology, the server is on c9.io.
 Realized: creating a server in NodeJS, 
-Note: sometimes server shuting down for unknown reason with no error. I guess it's because of hosting features, but who knows.
+Note: sometimes server is shuting down for unknown reason with no error. I guess it's because of hosting features, but who knows.
 Anyway I have to restart it manually so if the chat tells you 'Server is not response' — don't worry and try again later or just call me.
 
 — svden.github.io/practice-ecommerce/ — adaptive layout of a page + JS without external libraries. One of my first projects.
