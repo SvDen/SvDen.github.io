@@ -247,7 +247,7 @@ class SnakeGame {
         // если игра запускается впервые, то пишем правила и управление
         if (!this._animationKey) {
             let mainRules = 'Your goal is to eat food and grow as much as possible.'
-            + ' Try to avoid toching the borders, if this occur the game will end.'
+            + ' Try to avoid toching the borders or self-crossing, if this occur the game will end.'
             + ' In the multiplayer mode snakes can cross each other with no collision.';
             this._wrapText(mainRules, 'black', (this._W - width) / 2, this._H * 0.05, width, 15);
 
@@ -259,7 +259,7 @@ class SnakeGame {
 
             // если режим для двоих, то и для второго
             if (this._gameMode == 'duo') {
-                let secondPlayerText = this._secondSnakeName + ', use A,W,D,S keys on the keyboard to control your snake.'
+                let secondPlayerText = this._secondSnakeName + ', use W,A,S,D keys on the keyboard to control your snake.'
                     + ' Hold key for accelerate';
                 this._wrapText(secondPlayerText, this._secondSnakeColor, this._W - width * 0.4 - textPlayerMargin, this._H * 0.30, width * 0.5, 15);
 
