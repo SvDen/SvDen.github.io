@@ -255,13 +255,13 @@ class SnakeGame {
             let textPlayerMargin = (this._W - width) / 2;
             let firstPlayerText = this._firstSnakeName + ', use arrow keys on the keyboard to control your snake.' +
                     ' Hold key for accelerate';
-            this._wrapText(firstPlayerText, this._firstSnakeColor, textPlayerMargin, this._H * 0.30, width * 0.5, 15);
+            this._wrapText(firstPlayerText, this._firstSnakeColor, textPlayerMargin, this._H * 0.35, width * 0.5, 15);
 
             // если режим для двоих, то и для второго
             if (this._gameMode == 'duo') {
                 let secondPlayerText = this._secondSnakeName + ', use W,A,S,D keys on the keyboard to control your snake.'
                     + ' Hold key for accelerate';
-                this._wrapText(secondPlayerText, this._secondSnakeColor, this._W - width * 0.4 - textPlayerMargin, this._H * 0.30, width * 0.5, 15);
+                this._wrapText(secondPlayerText, this._secondSnakeColor, this._W - width * 0.4 - textPlayerMargin, this._H * 0.35, width * 0.5, 15);
 
             }
         } else { // если игра закончилась и нужно сделать рестарт, то пишем кто выиграл и очки
