@@ -1,0 +1,13 @@
+* {margin: 0; padding: 0; }
+
+body {
+    /*background: #6b92b9;*/
+}
+
+canvas {
+    /*width: 500px;*/
+    /*height: 500px;*/
+    display: block;
+    margin: 10px auto;
+    /*background-color: #eee;*/
+}

@@ -1,0 +1,14 @@
+{
+  "name": "snake-game",
+  "version": "1.0.0",
+  "description": "This is a multiplayer snake game.",
+  "main": "snake-game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SvDen",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

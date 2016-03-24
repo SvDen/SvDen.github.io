@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+<div class="container" id="snake-game-container">
+    <h1>Welcome to the absolutely amazing snake game!
+        <div class="small">
+            Relax, its' just a joke, the game is not really awesome now. But I'm still working on it.
+        </div>
+    </h1>
+    <hr>
+    <h3 class="text-success">Please chose your game preferences (not required) and then press START button.</h3>
+    <form action="" id="snake-game-start" class="form-group " name="snakeGameForm">
+        <div class="input-group">
+            <span class="input-group-addon">Snakes starting speed:</span>
+            <input name="startSnakesSpeed" type="text" class="form-control" placeholder="Recommended in 5-15 range">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">Amount of food on the table:</span>
+            <input name="amountOfFood" type="text" class="form-control" placeholder="Recommended in 1-20 range">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">1-st player name</span>
+            <input name="firstPlayerName" type="text" class="form-control" placeholder="Type your nickname...">
+            <span class="input-group-addon">Your snake color:</span>
+            <input name="firstPlayerColor" type="text" class="form-control" placeholder="Red, blue, purple etc.">
+        </div>
+        <br>
+        <div class="input-group">
+            <label class="input-group-addon">
+                <input type="checkbox" aria-label="..." name="isSecondPlayer">
+            </label>
+            <span class="input-group-addon">2-nd player</span>
+            <input name="secondPlayerName" type="text" class="form-control" placeholder="Type 2-nd player nickname...">
+            <span class="input-group-addon">Your snake color:</span>
+            <input name="secondPlayerColor" type="text" class="form-control" placeholder="Red, blue, purple etc.">
+        </div>
+        <br>
+        <button class="btn btn-lg btn-success center-block">START</button>
+    </form>
+</div>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<script src="scripts/snake-game-entrance.js"></script>
+<script src="scripts/snake.js"></script>
+<script src="scripts/food.js"></script>
+<script src="scripts/snake-game-controller.js"></script>
+</body>
+</html>
