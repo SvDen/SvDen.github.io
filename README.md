@@ -3,7 +3,7 @@
 This is the place for my pet-projects.
 Each new project (shown further) is better than the previous.
 
-— svden.github.io/snake/dev/ — snake game with hot seat multiplayer built on pure JS + canvas.
+— svden.github.io/snake/build/ — snake game with hot seat multiplayer built on pure JS + canvas.
 Realized: working with HTML5 canvas, prototype-based inheritance ES2015 and a lot of new other features of this modern standart.
 
 — svden.github.io/to-do/public/ — To Do list in pure JS based on Bootstrap.
