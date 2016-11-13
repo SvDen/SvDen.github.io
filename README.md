@@ -3,6 +3,8 @@
 This is the place for my pet-projects.
 Each new project (shown further) is better than the previous.
 
+— svden.github.io/react-schedule/public/ — day-schedule component on React. Localstorage keeps all data.
+
 — svden.github.io/snake/build/ — snake game with hot seat multiplayer built on pure JS + canvas.
 Realized: working with HTML5 canvas, prototype-based inheritance ES2015 and a lot of new other features of this modern standart.
 
