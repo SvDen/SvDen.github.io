@@ -1,0 +1,70 @@
+.schedule {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.schedule table {
+    /*background-color: lightgray;*/
+    width: auto;
+    border-collapse: collapse;
+}
+
+.schedule-button-container {
+    float: right;
+}
+
+.schedule-button-container button {
+    margin: 10px;
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    background-color: gray;
+}
+
+.schedule-button-container button:focus {
+    border: none;
+    outline: none;
+}
+
+.schedule td {
+    border: 1px solid #e4e4e4;
+}
+
+.schedule .under-header {
+    height: 15px;
+    background-color: white;
+    border-left: 1px solid lightgray;
+}
+
+.schedule .inactive {
+    background: white;
+}
+
+.schedule .active {
+    background: lightgray;
+}
+
+.schedule .dark {
+    background: gray;
+}
+
+.schedule .all-active {
+    background: gray url("../img/all-checked.png") no-repeat center;
+    background-size: 20px;
+}
+
+.schedule .all-inactive {
+    background: gray;
+}
+
+.schedule-allDayPicker {
+    width: 50px;
+}
+
+.schedule-row {
+    height: 30px;
+}
+
+.schedule-cell {
+    width: 15px;
+}
